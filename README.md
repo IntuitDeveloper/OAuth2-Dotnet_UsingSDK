@@ -1,6 +1,6 @@
 # OAuth2-Dotnet-master
 OAuth2 Web Forms Sample app for Dotnet
-The Intuit Developer team has written this OAuth 2.0 Sample App in Node.JS to provide working examples of OAuth 2.0 concepts, and how to integrate with Intuit endpoints.
+The Intuit Developer team has written this OAuth 2.0 Sample App in .Net(C#) to provide working examples of OAuth 2.0 concepts, and how to integrate with Intuit endpoints.
 
 **Getting Started**
 
@@ -8,8 +8,8 @@ Before beginning, it may be helpful to have a basic understanding of OAuth 2.0 c
 
 **PreRequisites**
 
-Visual Studio 2015
-ngrok
+Visual Studio Framework 2.6.1
+
 
 
 **Setup**
