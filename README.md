@@ -1,4 +1,4 @@
-# OAuth2-Dotnet-master
+# OAuth2-Dotnet-UsingSDK
 OAuth2 Web Forms Sample app for Dotnet
 The Intuit Developer team has written this OAuth 2.0 Sample App in .Net(C#) to provide working examples of OAuth 2.0 concepts, and how to integrate with Intuit endpoints.
 
