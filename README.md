@@ -8,7 +8,7 @@ Before beginning, it may be helpful to have a basic understanding of OAuth 2.0 c
 
 **PreRequisites**
 
-Visual Studio Framework 2.6.1
+Visual Studio Framework 4.6.1
 
 
 
@@ -35,7 +35,7 @@ logPath should be the location of a physical path on your disk.
 Once you have created an app on Intuit's Developer Portal, you can find your credentials (Client ID and Client Secret) under the "Keys" tab. You will also find a section to enter your Redirect URI here.
 
 **Redirect URI**
-You'll have to set a Redirect URI in both 'web.config' and the Developer Portal ("Keys" section). With this app, the typical value would be http://localhost:52626/TestOAuth2_WithSDK.aspx, unless you host this sample app in a different way (if you were testing HTTPS, for example or changing the port).
+You'll have to set a Redirect URI in both 'web.config' and the Developer Portal ("Keys" section). With this app, the typical value would be http://localhost:59785/Default.aspx, unless you host this sample app in a different way (if you were testing HTTPS, for example or changing the port).
 
 **Scopes**
 
