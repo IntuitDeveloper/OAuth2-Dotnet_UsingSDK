@@ -1,0 +1,2433 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Intuit.Ipp.LinqExtender</name>
+    </assembly>
+    <members>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.NamespaceDoc">
+            <summary>
+            Intuit.Ipp.DataService has public methods to call Intuit Data Services and 
+            The assembly has methods for all CRUD 
+            (Add, Update, FindById, FindAll and Delete) operations and also has features to query QBO entities.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.IBucket">
+            <summary>
+            Interface defining Bucket object and its accesible proeprties.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IBucket.Name">
+            <summary>
+            Gets the name of the <see cref="T:Intuit.Ipp.LinqExtender.Bucket"/> object, either the class name or value of <c>OriginalEntityName</c>, if used.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IBucket.IsDirty">
+            <summary>
+            Gets/Sets <value>true</value> if an where is clause used.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IBucket.ItemsToTake">
+            <summary>
+            Gets/Sets Items to Take from collection.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IBucket.ItemsToSkip">
+            <summary>
+            Gets/ Sets items to skip from start.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IBucket.Items">
+            <summary>
+            Gets <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/> for property.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IBucket.Methods">
+            <summary>
+            Gets a list of methods executed on the query.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IBucket.OrderByItems">
+            <summary>
+            Gets the order by information set in query.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IBucket.UniqueItems">
+            <summary>
+            Returns property name for which the UniqueIdentifierAttribute is defined.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.IClassGenerator">
+            <summary>
+            Entry point interface for <see cref="T:Intuit.Ipp.LinqExtender.ClassGenerator"/>
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IClassGenerator.BuildDynamicAssembly">
+            <summary>
+            Builds the dynamic assembly.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IClassGenerator.CreateType(System.Type,System.Type)">
+            <summary>
+            Builds a type in the dynamic assembly, if already the type is not created.
+            </summary>
+            <param name="parentType">type of object or interfae to implement</param>
+            <param name="interfaceType">parent interface type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IClassGenerator.AddProperty(System.String,System.Object)">
+            <summary>
+            Adds properties to the dynamic type.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IClassGenerator.CreateInstance``1(System.Object)">
+            <summary>
+            Creates a new instance of the dynamically generated type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source">source object from where to copy the properties.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.IContainer">
+            <summary>
+            Defaines common propeties for accessing <see cref="T:Intuit.Ipp.LinqExtender.Bucket"/> or <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/>.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IContainer.Container">
+            <summary>
+            Gets the current container.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IContainer.Name">
+            <summary>
+            Gets the name of the current container.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.IQueryObject">
+            <summary>
+            Interface for making an object queryable.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.IQueryObjectImpl">
+            <summary>
+            Internal class for query object.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IQueryObjectImpl.IsDeleted">
+            <summary>
+            Get/Sets if an item is delted from the collection.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IQueryObjectImpl.IsNewlyAdded">
+            <summary>
+            Gets/Sets if an item is newly added to the collection. 
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Abstraction.IQueryObjectImpl.IsAltered">
+            <summary>
+            Gets/Sets if an item is updated. 
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IQueryObjectImpl.FillBucket(Intuit.Ipp.LinqExtender.Bucket)">
+            <summary>
+            fills up the bucket from current object.
+            </summary>
+            <param name="bucket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IQueryObjectImpl.FillObject(Intuit.Ipp.LinqExtender.Bucket)">
+            <summary>
+             fills the object from working bucket.
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IQueryObjectImpl.FillProperty(System.String,System.Object,System.Type)">
+            <summary>
+            fills up the property of current object.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="returnType"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.IModifiableCollection">
+            <summary>
+            Generic inteface for modifying collecion.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IModifiableCollection.Clear">
+            <summary>
+            Clears out items from collection.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IModifiableCollection.Sort">
+            <summary>
+            Sorts the collection, using the orderby clause used in query.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.IModifiableCollection`1">
+            <summary>
+            Non generic interface for modifying colleciton items.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IModifiableCollection`1.Remove(`0)">
+            <summary>
+            Marks an item to be removed.
+            </summary>
+            <param name="value">query object.</param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IModifiableCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Addes a range of items to the collection.
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IModifiableCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Adds items to the main collection and does a sort operation if any orderby is used in query.
+            </summary>
+            <param name="items"></param>
+            <param name="inMemorySort"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IModifiableCollection`1.Add(`0)">
+            <summary>
+            Adds a new item to the collection
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall`1">
+            <summary>
+            Query item interface for direct calls on collection.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall`1.Single">
+            <summary>
+            Returns a single item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall`1.SingleOrDefault">
+            <summary>
+            Returns a single item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall`1.First">
+            <summary>
+            Returns the first item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall`1.FirstOrDefault">
+            <summary>
+            Returns first item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall`1.Last">
+            <summary>
+            Returns the last item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall`1.LastOrDefault">
+            <summary>
+            Returns last item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall">
+            <summary>
+            Non generic query call interface.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall.Any">
+            <summary>
+            Return true if there is any item in collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Abstraction.IMethodCall.Count">
+            <summary>
+            Returns the count of items in the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.BlockExpression">
+            <summary>
+            Combines a number expressions sequentially
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.BlockExpression.Expressions">
+            <summary>
+            Gets the list of expression associated with the current query.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.BlockExpression.CodeType">
+            <summary>
+            Gets a value indicating the type of expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.NamespaceDoc">
+            <summary>
+            Intuit.Ipp.DataService has public methods to call Intuit Data Services and 
+            The assembly has methods for all CRUD 
+            (Add, Update, FindById, FindAll and Delete) operations and also has features to query QBO entities.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.LambdaExpression">
+            <summary>
+            Defines lambda expression.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Ast.LambdaExpression.#ctor(System.Type)">
+            <summary>
+            Initailizes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Ast.LambdaExpression"/> class.
+            </summary>
+            <param name="type">Target object type.</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LambdaExpression.Type">
+            <summary>
+            Gets the underlying type of the expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LambdaExpression.Body">
+            <summary>
+            Gets the body of the expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LambdaExpression.CodeType">
+            <summary>
+            Gets the type of the expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.LiteralExpression">
+            <summary>
+            Represents the extracted value of a query item.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LiteralExpression.Type">
+            <summary>
+            Gets the target type.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LiteralExpression.Value">
+            <summary>
+            Gets the value that is evaulated from linq query.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LiteralExpression.CodeType">
+            <summary>
+            Gets the type of the expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.LogicalExpression">
+            <summary>
+            Reprensents Logical blocks.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Ast.LogicalExpression.#ctor(Intuit.Ipp.LinqExtender.LogicalOperator)">
+            <summary>
+            Intializes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Ast.LogicalExpression"/> class.
+            </summary>
+            <param name="@operator">Logical operator</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LogicalExpression.Left">
+            <summary>
+            Gets the left expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LogicalExpression.Right">
+            <summary>
+            Gets the right exprssison.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LogicalExpression.IsChild">
+            <summary>
+            Gets value that indicates that the current is a child expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LogicalExpression.Operator">
+            <summary>
+            Gets the operator joining the left and right expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.LogicalExpression.CodeType">
+            <summary>
+            Gets the type of the expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.MemberExpression">
+            <summary>
+            Represents query members
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Ast.MemberExpression.#ctor(Intuit.Ipp.LinqExtender.BucketItem)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Ast.MemberExpression"/> class.
+            </summary>
+            <param name="item">Target <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/></param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MemberExpression.Member">
+            <summary>
+            Gets the member reference.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MemberExpression.Name">
+            <summary>
+            Gets the name of the member.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MemberExpression.FullName">
+            <summary>
+            Gets the full name of the member.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MemberExpression.DeclaringType">
+            <summary>
+            Gets the declaring type for the member.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Ast.MemberExpression.FindAttribute``1">
+            <summary>
+            Finds the target custom attribute for the member.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MemberExpression.CodeType">
+            <summary>
+            Gets the type of the expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.MethodCallExpression">
+            <summary>
+            Defines method calls on the query
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MethodCallExpression.Target">
+            <summary>
+            Gets the target
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MethodCallExpression.Method">
+            <summary>
+            Gets the underlying method info.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MethodCallExpression.IsTake">
+            <summary>
+            Gets a value indicating that it is a take call.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MethodCallExpression.IsSkip">
+            <summary>
+            Gets a value indicating that it is a skip method.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MethodCallExpression.Paramters">
+            <summary>
+            Gets the method parameters.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.MethodCallExpression.CodeType">
+            <summary>
+            Override member
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.NotExpression">
+            <summary>
+            TODO: Update summary.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Ast.NotExpression.#ctor(System.String)">
+            <summary>
+            Member NotExpression
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.NotExpression.CodeType">
+            <summary>
+            Override Member CodeType
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.OrderbyExpression">
+            <summary>
+            Represents order by query.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Ast.OrderbyExpression.#ctor(Intuit.Ipp.LinqExtender.MemberReference,System.Boolean)">
+            <summary>
+            Intializes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Ast.OrderbyExpression"/> class.
+            </summary>
+            <param name="memberReference">Target memberReference</param>
+            <param name="ascending">Sort order</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.OrderbyExpression.Member">
+            <summary>
+            Gets the associated member.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.OrderbyExpression.Ascending">
+            <summary>
+            Gets a value indicating if the order should be made in ascending order.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.OrderbyExpression.CodeType">
+            <summary>
+            Gets the type of the expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.OrderbyExpression.Suffix">
+            <summary>
+            Get or set Suffix
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.SelectExpression">
+            <summary>
+            TODO: Update summary.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Ast.SelectExpression.#ctor(System.String)">
+            <summary>
+            Sets PropertyName
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.TypeExpression">
+            <summary>
+            Represents the target type.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Ast.TypeExpression.#ctor(System.Type)">
+            <summary>
+            Initalizes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Ast.TypeExpression"/> class.
+            </summary>
+            <param name="type">Target type</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.TypeExpression.Type">
+            <summary>
+            Gets the underlying type.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.TypeExpression.CodeType">
+            <summary>
+            Gets the type of the expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.BinaryExpression">
+            <summary>
+            Represents the binary operation.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Ast.BinaryExpression.#ctor(Intuit.Ipp.LinqExtender.BinaryOperator)">
+            <summary>
+            Initalizes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Ast.BinaryExpression"/> class.
+            </summary>
+            <param name="@operator">Target operator</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.BinaryExpression.Left">
+            <summary>
+            Gets the left expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.BinaryExpression.Right">
+            <summary>
+            Gets the right expression
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.BinaryExpression.Operator">
+            <summary>
+            Gets the binary operator.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.BinaryExpression.CodeType">
+            <summary>
+            Gets a value indicating the type of expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Ast.Expression">
+            <summary>
+            Abstract expression base that represents the LINQ query.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Ast.Expression.CodeType">
+            <summary>
+            Gets a value indicating the type of expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Attributes.NamespaceDoc">
+            <summary>
+            Intuit.Ipp.DataService has public methods to call Intuit Data Services and 
+            The assembly has methods for all CRUD 
+            (Add, Update, FindById, FindAll and Delete) operations and also has features to query QBO entities.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Attributes.NameAttribute">
+            <summary>
+            Marks a class property or class with special name 
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Attributes.NameAttribute.#ctor(System.String)">
+            <summary>
+            Initalizes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Attributes.NameAttribute"/> class.
+            </summary>
+            <param name="targetName">Name of the reflected object.</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Attributes.NameAttribute.Name">
+            <summary>
+            maps to the name of the original enity name.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Attributes.UniqueIdentifierAttribute">
+            <summary>
+             Defines a property to be unique.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Attributes.IgnoreAttribute">
+            <summary>
+            Under this attribute present, property will be ignored by extender.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.CodeType">
+            <summary>
+            Defines Different types of code entries
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.CodeType.BinaryExpression">
+            <summary>
+            Binary expression.
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.CodeType.LogicalExpression">
+            <summary>
+            Logical expression
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.CodeType.TypeExpression">
+            <summary>
+            Simple expression
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.CodeType.MemberExpression">
+            <summary>
+            Member expression
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.CodeType.LiteralExpression">
+            <summary>
+            Literal expression
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.CodeType.LambdaExpresion">
+            <summary>
+            Lambda expression
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.CodeType.BlockExpression">
+            <summary>
+            Block expression
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.CodeType.OrderbyExpression">
+            <summary>
+            Orderby expression.
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.CodeType.MethodCallExpression">
+            <summary>
+            MethodCall Expression
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Bucket">
+            <summary>
+            Bucket is stuctured representation of the orignal query object.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.Container">
+            <summary>
+            Gets/ sets the name of the container.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.Name">
+            <summary>
+            Gets the name of the <see cref="T:Intuit.Ipp.LinqExtender.Bucket"/> object, either the class name or value of <c>OriginalEntityName</c>, if used.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.IsDirty">
+            <summary>
+            Gets/Sets <value>true</value> if an where is clause used.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.ItemsToTake">
+            <summary>
+            Gets/Sets Items to Take from collection.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.ItemsToSkip">
+            <summary>
+            Gets/ Sets items to skip from start.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.UniqueItems">
+            <summary>
+            Returns property name for which the UniqueIdentifierAttribute is defined.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.Items">
+            <summary>
+            Contains property items for current bucket.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.CurrentNode">
+            <summary>
+            Gets the first tree node fro simplied expression tree.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.CurrentTreeNode">
+            <summary>
+            Gets/Sets the current <see cref="P:Intuit.Ipp.LinqExtender.Bucket.CurrentNode"/>
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.Methods">
+            <summary>
+            Gets a list of methods executed on the query.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Bucket.OrderByInfo">
+            <summary>
+            The Filled up with query order by information.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.OrderByInfo.Member">
+            <summary>
+            Gets the member associated with the current orderby call.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.OrderByInfo.IsAscending">
+            <summary>
+            Gets true if the order by is ascending.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Bucket.OrderByInfo.#ctor(Intuit.Ipp.LinqExtender.MemberReference,System.Boolean)">
+            <summary>
+            Sets memeberReference, asc
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Bucket.OrderByInfo.#ctor(Intuit.Ipp.LinqExtender.MemberReference,System.String,System.Boolean)">
+            <summary>
+            Sets memeberReference, Suffix, asc
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.OrderByInfo.Suffix">
+            <summary>
+            Get Suffix
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Bucket.GroupByContainer">
+            <summary>
+            Contains the group by detail.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.GroupByContainer.Key">
+            <summary>
+            Gets or set the key by which group by will be made.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.OrderByItems">
+            <summary>
+            Holds order by information.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.Group">
+            <summary>
+            Gets or set the group container.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Bucket.UniqueProperties">
+            <summary>
+            Gets unique identifier properties.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Bucket.Clear">
+            <summary>
+            Clears out any used properties.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketImpl.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.BucketImpl"/> class.
+            </summary>
+            <param name="targetType"></param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketImpl.Processed">
+            <summary>
+            marks if the bucket is already prepared or not.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketImpl.IsAsc">
+            <summary>
+            internal use : to check if the bucket object should be sorted in asc or dsc
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketImpl.CurrentExpessionType">
+            <summary>
+            Defines the current expression node.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketImpl.ClauseItemCount">
+            <summary>
+            number of items queried in <c>Where</c> caluse
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketImpl.Level">
+            <summary>
+            gets the Level of the clause item
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketImpl.TreeNodeInfo.Id">
+            <summary>
+            identifier
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketImpl.Clear">
+            <summary>
+            clear outs the data.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.BucketImpl`1">
+            <summary>
+            internal implementation of bucket object
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.BucketItem">
+            <summary>
+            Contains the detail for quried or valued items.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/> class.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.Container">
+            <summary>
+            Gets or sets the container.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.Child">
+            <summary>
+            Get or sets the child.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.BucketItem.QueryCondition">
+            <summary>
+            Represents the conditioal operators and its compared values for where clause.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketItem.QueryCondition.#ctor(System.Object,Intuit.Ipp.LinqExtender.BinaryOperator)">
+            <summary>
+            Creates a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.BucketItem.QueryCondition"/>
+            </summary>
+            <param name="value">value</param>
+            <param name="type">type of operation</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.QueryCondition.Value">
+            <summary>
+            Gets the query item value.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.QueryCondition.QueryOperator">
+            <summary>
+            Represents the comparison operators like !=, >=, etc
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketItem.#ctor(System.Type,System.String,System.String,System.Type,System.Object,System.Boolean,Intuit.Ipp.LinqExtender.BinaryOperator,System.Boolean)">
+            <summary>
+            Creates a new bucket object.
+            </summary>
+            <param name="underlyingType">Type of the bucket object</param>
+            <param name="name">Name of the item that maps with source</param>
+            <param name="propertyName">Name of property regardless of OriginalFieldNameAttribute</param>
+            <param name="propertyType">Type of the underlying property.</param>
+            <param name="value">Value of the item</param>
+            <param name="unique">if unique attriube is defined for item</param>
+            <param name="queryOperator">Eelation type , defines what type of expression, equal, lessthan or other.</param>
+            <param name="queryVisible">Marks that it is to be used in query expression</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.Values">
+            <summary>
+            Return multiple values if item quried with different values in same where clause.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.Value">
+            <summary>
+            Return values for quried item in where clause. 
+            Optionally, tries to combine the value for nested class queries.
+            Optionally, creates object[] for system and abstract types.
+            Return values in raw format regardless of its releation type.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.HasMultipleValues">
+            <summary>
+            Determines if the item is used multiple times in where clause.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.Operator">
+            <summary>
+            Return <c>RelationType</c> enum for the quried item.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.Name">
+            <summary>
+             Name of the property or value of <c>OriginalFieldNameAttribute</c> if used.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.FullName">
+            <summary>
+            Gets the fully qualified name of the <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/>.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.ProperyName">
+            <summary>
+            Name of property that bucketItem represents.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.Method">
+            <summary>
+            Gets or sets the method used in query.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.MemberInfo">
+            <summary>
+            Gets or sets the member info.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.PropertyType">
+            <summary>
+            Type of the property that bucketItem represents.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.Unique">
+            <summary>
+            Gets if a property is unique.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.IsModified">
+            <summary>
+            <value>true</value> if user updatas the property value manually.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.Visible">
+            <summary>
+            Determines if the item is not maked to be Ignored by <c>IgnoreAttribute</c>
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.IsVisited">
+            <summary>
+            Gets or sets a value indicating if an item is already visited.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.DeclaringType">
+            <summary>
+            Gets the underlying object type.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketItem.SetValue(System.Object,System.Object)">
+            <summary>
+            Sets the value to target object.
+            </summary>
+            <param name="target"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketItem.GetValue(System.Object)">
+            <summary>
+            Gets the value for a target object.
+            </summary>
+            <param name="target"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketItem.FindAttribute(System.Type)">
+            <summary>
+            finds the attribute, within property
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketItem.GetActiveItem">
+            <summary>
+            Validates and finds the active item with value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.BucketItem.ExtenderMethod">
+            <summary>
+            Cotains the detail of the method used in query.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.ExtenderMethod.Name">
+            <summary>
+            Gets Name of the method.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.ExtenderMethod.Method">
+            <summary>
+            Gets / Sets the arguments
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.BucketItem.ExtenderMethod.ReturnType">
+            <summary>
+            Gets the return type.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.BucketItem.ExtenderMethod.DynamicInvoke">
+            <summary>
+            Dynamically invokes the method.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.ClassGenerator">
+            <summary>
+            Generates a new object from existing one using the user's setup.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.ClassGenerator.Instance">
+            <summary>
+            Creates and gets a new instance <see cref="T:Intuit.Ipp.LinqExtender.ClassGenerator"/> class.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ClassGenerator.BuildDynamicAssembly">
+            <summary>
+            Builds dynamic assembly.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ClassGenerator.CreateType(System.Type,System.Type)">
+            <summary>
+            Builds a type in the dynamic assembly, if already the type is not created.
+            </summary>
+            <param name="parent">type of object or interfae to implement</param>
+            <param name="interfaceType">parent interface type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ClassGenerator.AddProperty(System.String,System.Object)">
+            <summary>
+            Adds a property dynamically to the type, with specific type.
+            </summary>
+            <param name="name">name of the property</param>
+            <param name="value">value of the property</param>
+            <returns><see cref="T:Intuit.Ipp.LinqExtender.Abstraction.IClassGenerator"/></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ClassGenerator.CreateInstance``1(System.Object)">
+            <summary>
+            Creates a new instance of the dynamically generated type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source">source object from where to copy the properties.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ClassGenerator.GetTypeFromValue(System.Object)">
+            <summary>
+            Gets a <see cref="T:System.Type"/> from provided <value>value</value>
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Collection.NamespaceDoc">
+            <summary>
+            Intuit.Ipp.DataService has public methods to call Intuit Data Services and 
+            The assembly has methods for all CRUD 
+            (Add, Update, FindById, FindAll and Delete) operations and also has features to query QBO entities.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1">
+            <summary>
+            Contains projected read-only query objects.
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1.Items">
+            <summary>
+            collection items 
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1.Intuit#Ipp#LinqExtender#Abstraction#IMethodCall{T}#Single">
+            <summary>
+            Returns a single item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1.SingleOrDefault">
+            <summary>
+            Returns a single item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1.Any">
+            <summary>
+            Return true if there is any item in collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1.Count">
+            <summary>
+            Returns the count of items in the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1.Intuit#Ipp#LinqExtender#Abstraction#IMethodCall{T}#First">
+            <summary>
+            Returns the first item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1.FirstOrDefault">
+            <summary>
+            Returns first item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1.Intuit#Ipp#LinqExtender#Abstraction#IMethodCall{T}#Last">
+            <summary>
+            Returns the last item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.ReadOnlyQueryCollection`1.LastOrDefault">
+            <summary>
+            Returns last item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1">
+            <summary>
+            Contains query objects.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1"/> class and initialized teh classgenerator.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Item(System.Int32)">
+            <summary>
+            Gets/Sets a query object implementation for an index.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Any">
+            <summary>
+            returnts true if the sequece contains any element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Single">
+            <summary>
+            returns only element of the sequece , throws exception if there is no element in 
+            the sequece
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.SingleOrDefault">
+            <summary>
+            Returns a single item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Count">
+            <summary>
+            returns the count of the sequence
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.First">
+            <summary>
+            returns the first item of the sequence
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.FirstOrDefault">
+            <summary>
+            Returns first item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Last">
+            <summary>
+            returns the last item of the sequence.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.LastOrDefault">
+            <summary>
+            Returns the last item or a default value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Remove(`0)">
+            <summary>
+            Marks a item to be removed from the colleciton.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Clear">
+            <summary>
+            Clears out the collection.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Add(`0)">
+            <summary>
+            Adds a new item to the collection.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a range of items to the collection.
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Adds items to the main collection and does a sort operation if any orderby is used in query.
+            </summary>
+            <param name="items"></param>
+            <param name="inMemorySort"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Sort">
+            <summary>
+            Sorts the collection, using the orderby clause used in query.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Items">
+            <summary>
+            Gets a list of query item.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Objects">
+            <summary>
+            Gets a list of query object implementation.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Collection.QueryCollection`1.Sort(System.Collections.Generic.IComparer{Intuit.Ipp.LinqExtender.QueryObject{`0}})">
+            <summary>
+            Sorts the collection with the provided comparer.
+            </summary>
+            <param name="comparer"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.NamespaceDoc">
+            <summary>
+            Intuit.Ipp.DataService has public methods to call Intuit Data Services and 
+            The assembly has methods for all CRUD 
+            (Add, Update, FindById, FindAll and Delete) operations and also has features to query QBO entities.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.NamespaceDoc">
+            <summary>
+            Intuit.Ipp.DataService has public methods to call Intuit Data Services and 
+            The assembly has methods for all CRUD 
+            (Add, Update, FindById, FindAll and Delete) operations and also has features to query QBO entities.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentMethod.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Initializes the instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentMethod"/> class.
+            </summary>
+            <param name="bucket">Target bucket</param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentBucket">
+            <summary>
+            Fluent implementation for the bucket object.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentBucket.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Create a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentBucket"/> for a <see cref="F:Intuit.Ipp.LinqExtender.Fluent.FluentBucket.bucket"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentBucket.As(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Creates a fluent wrapper of the original bucket object.
+            </summary>
+            <param name="bucket"></param>
+            <returns><see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentBucket"/></returns>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentBucket.Entity">
+            <summary>
+            Creates and gets a new fluent entity object.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentBucket.IsDirty">
+            <summary>
+            Gets true if any where clause is used.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentBucket.ExpressionTree">
+            <summary>
+            Gets the node representing  <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/> and their relational info.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentBucket.For">
+            <summary>
+            enables BucketItem
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity">
+            <summary>
+            Contains Entity Info.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Creates a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.Name">
+            <summary>
+             Name of the entity, can be overriden by <c>OriginalEntityNameAttribute</c>
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.ItemsToFetch">
+            <summary>
+            Gets items to fetch from source.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.ItemsToSkipFromStart">
+            <summary>
+            Default  0, number of items to skip from start.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.UniqueAttribte">
+            <summary>
+            List of unique column name.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy">
+            <summary>
+            Defines a fluent implentation for order by query.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Creates a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.IfUsed(System.Action)">
+            <summary>
+            Checks if orderby is used in query and calls action delegate to 
+            execute user's code and internally marks <value>true</value> for ifUsed field
+            to be used by <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.FluentOrderByItem"/> iterator.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.ForEach">
+            <summary>
+            Iterator for order by items.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.Callback">
+            <summary>
+            Callback handler for <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="member">Target member</param>
+            <param name="ascending">bool for sort order</param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.CallbackSuffix">
+            <summary>
+            Callback handler for <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="member">Target member</param>
+            <param name="suffix">suffix</param>
+            <param name="ascending">bool for sort order</param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.FluentOrderByItem">
+            <summary>
+            Order by iterator.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.FluentOrderByItem.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Creates a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.FluentOrderByItem.Process(Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy.Callback)">
+            <summary>
+            Does a callback to process the order by used in where clause.
+            </summary>
+            <param name="callback"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentSelect.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Creates a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentSelect.IfUsed(System.Action)">
+            <summary>
+            Checks if orderby is used in query and calls action delegate to 
+            execute user's code and internally marks <value>true</value> for ifUsed field
+            to be used by <see cref="!:FluentOrderByItem"/> iterator.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentSelect.ForEach">
+            <summary>
+            Iterator for order by items.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentSelect.Callback">
+            <summary>
+            Callback handler for <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="member">Target member</param>
+            <param name="ascending">bool for sort order</param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentSelect.FluentSelectItem">
+            <summary>
+            Select iterator.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentSelect.FluentSelectItem.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Creates a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentSelect.FluentSelectItem.Process(Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentSelect.Callback)">
+            <summary>
+            Does a callback to process the order by used in where clause.
+            </summary>
+            <param name="callback"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentNot.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Creates a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentNot"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentNot.IfUsed(System.Action)">
+            <summary>
+            Checks if orderby is used in query and calls action delegate to 
+            execute user's code and internally marks <value>true</value> for ifUsed field
+            to be used by <see cref="!:FluentOrderByItem"/> iterator.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentNot.ForEach">
+            <summary>
+            Iterator for order by items.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentNot.Callback">
+            <summary>
+            Callback handler for <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="member">Target member</param>
+            <param name="ascending">bool for sort order</param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentNot.FluentNotItem">
+            <summary>
+            Select iterator.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentNot.FluentNotItem.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Creates a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentNot.FluentNotItem.Process(Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentNot.Callback)">
+            <summary>
+            Does a callback to process the order by used in where clause.
+            </summary>
+            <param name="callback"></param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.OrderBy">
+            <summary>
+            Gets an intance for the <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree">
+            <summary>
+            Fluent implementation for the simplified expression tree.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree.#ctor(Intuit.Ipp.LinqExtender.TreeNode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree"/> class.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree.Node">
+            <summary>
+            Gets the tree node.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree.DescribeContainerAs``1(``0)">
+            <summary>
+            Describes the container for which the expression tree will be evaluated.
+            </summary>
+            <typeparam name="T">Type of the reference.</typeparam>
+            <param name="container">Target container</param>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1">
+            <summary>
+            Fluent expression tree.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.#ctor(Intuit.Ipp.LinqExtender.TreeNode)">
+            <summary>
+            Initalizes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree"/> class.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.#ctor(Intuit.Ipp.LinqExtender.TreeNode,`0)">
+            <summary>
+            Initalizes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree"/> class.
+            </summary>
+            <param name="node"></param>
+            <param name="reference"><typeparamref name="T"/></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.Begin(Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree{`0}.BeginHandler)">
+            <summary>
+            Invoked for starting <see cref="T:Intuit.Ipp.LinqExtender.TreeNode"/>
+            </summary>
+            <param name="beginHandler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.End(Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree{`0}.EndHandler)">
+            <summary>
+            Invoked for closing the <see cref="T:Intuit.Ipp.LinqExtender.TreeNode"/>
+            </summary>
+            <param name="endHandler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.Root(Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree{`0}.RootHandler)">
+            <summary>
+            Invoked for root <see cref="T:Intuit.Ipp.LinqExtender.TreeNode"/>
+            </summary>
+            <param name="rootHandler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.EachLeaf(Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree{`0}.ItemHandler)">
+            <summary>
+            Invoked foreach Leaf
+            </summary>
+            <param name="itemHandler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.BeginHandler">
+            <summary>
+            Begin <see cref="T:Intuit.Ipp.LinqExtender.TreeNode"/> handler.
+            </summary>
+            <param name="sender"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.EndHandler">
+            <summary>
+            Closing <see cref="T:Intuit.Ipp.LinqExtender.TreeNode"/> handler.
+            </summary>
+            <param name="sender"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.RootHandler">
+            <summary>
+            Root <see cref="T:Intuit.Ipp.LinqExtender.TreeNode"/>  handler
+            </summary>
+            <param name="sender"></param>
+            <param name="compoundOperator"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.ItemHandler">
+            <summary>
+            Leaf node handler.
+            </summary>
+            <param name="sender"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentExpressionTree`1.Execute">
+            <summary>
+            Builds the logical tree for the expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentIterator">
+            <summary>
+            Fluent iterator entry point.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Create a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Fluent.FluentIterator"/> for <see cref="F:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.bucket"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.ItemCollection">
+            <summary>
+            Fluent Item collection implementation.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.ItemCollection.#ctor(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Create a new instance of fluent bucket item.
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.ItemCollection.Match(System.Predicate{Intuit.Ipp.LinqExtender.BucketItem})">
+            <summary>
+            Matches an <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/> for a predicate.
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.ItemCollection.Process(Intuit.Ipp.LinqExtender.Fluent.FluentIterator.ItemCollection.Callback)">
+            <summary>
+            Raises a callback.
+            </summary>
+            <param name="callback"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.ItemCollection.Callback">
+            <summary>
+            Callback delegate from <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/>
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.EachItem">
+            <summary>
+            Gets fluent <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/> collection.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.Item(System.String)">
+            <summary>
+             Gets a <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/> for name
+            </summary>
+            <param name="itemName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.Item``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Gets <see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/> for a property.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expression"></param>
+            <returns><see cref="T:Intuit.Ipp.LinqExtender.BucketItem"/></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Fluent.FluentIterator.VisitMemberAccess(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            Sets memberInfo to return Expression
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.LogicalOperator">
+            <summary>
+            Type of operator used in where clause.
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.LogicalOperator.None">
+            <summary>
+            Used for first item in where entry
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.LogicalOperator.And">
+            <summary>
+            Used for <![CDATA[ && ]]>
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.LogicalOperator.Or">
+            <summary>
+            Used for  ||
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.ExpressionVisitor">
+            <summary>
+             Expression visitor 
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)">
+            <summary>
+            Visits expression and delegates call to different to branch.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)">
+            <summary>
+            Visits the constance expression. To be implemented by user.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ExpressionVisitor.VisitMemberAccess(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            Visits the memeber access expression. To be implemented by user.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            Visits the method call expression.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)">
+            <summary>
+            Visits the binary expression.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ExpressionVisitor.VisitUnary(System.Linq.Expressions.UnaryExpression)">
+            <summary>
+            Visits the unary expression.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ExpressionVisitor.VisitLamda(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Visits the lambda expression.
+            </summary>
+            <param name="lambdaExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ExpressionVisitor.VisitParameter(System.Linq.Expressions.ParameterExpression)">
+            <summary>
+            Visits the parameter
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ExpressionVisitor.VisitNew(System.Linq.Expressions.NewExpression)">
+            <summary>
+            Visits the new type expression.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.IQueryContext`1">
+            <summary>
+            Entry point interface for defining a custom provider.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.IQueryContext`1.Execute(Intuit.Ipp.LinqExtender.Ast.Expression,System.Boolean,System.String@)">
+            <summary>
+            Executes the current Linq query.
+            </summary>
+            <param name="exprssion"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.MemberReference">
+            <summary>
+            Wraps and extends the <see cref="P:Intuit.Ipp.LinqExtender.MemberReference.MemberInfo"/> instance.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.MemberReference.DeclaringType">
+            <summary>
+            Get the decalaring type.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.MemberReference.Name">
+            <summary>
+            Gets the name of the member, applies <see cref="T:Intuit.Ipp.LinqExtender.Attributes.NameAttribute"/> first.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.MemberReference.MemberInfo">
+            <summary>
+            Gets the <see cref="P:Intuit.Ipp.LinqExtender.MemberReference.MemberInfo"/> associated with the reference.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.MemberReference.FindAttribute``1">
+            <summary>
+            Finds the specific attribute from the member.
+            </summary>
+            <typeparam name="T">Attribute to find</typeparam>
+            <returns>Target attribute reference</returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.MethodCall.#ctor(System.Object,System.Reflection.MethodInfo,Intuit.Ipp.LinqExtender.MethodCall.Parameter[])">
+            <summary>
+            Initalizes the instance of <see cref="T:Intuit.Ipp.LinqExtender.MethodCall"/> class.
+            </summary>
+            <param name="name">Name of the method</param>
+            <param name="parameters">Method arguments.</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.MethodCall.Target">
+            <summary>
+            Gets the target expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.MethodCall.Method">
+            <summary>
+            Gets the underlying method info.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.MethodCall.Parameters">
+            <summary>
+            Gets the array of parameter.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.MethodCall.Parameter.#ctor(System.Type,System.Object)">
+            <summary>
+            Initalizes the new instance of <see cref="!:Argument"/> class.
+            </summary>
+            <param name="type">Type of the argument</param>
+            <param name="value">Value of the argument</param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.MethodCall.Parameter.Value">
+            <summary>
+            Gets the parameter value
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.MethodCall.Parameter.Type">
+            <summary>
+            Gets the underlying type.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Messages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.BucketTranslationFailed">
+            <summary>
+              Looks up a localized string similar to Bucket translation failed during {0} call..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.CouldNotFindTheNestedProperty">
+            <summary>
+              Looks up a localized string similar to Could not find the nested property.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.DirectJoinNotSupported">
+            <summary>
+              Looks up a localized string similar to Direct join expression is not supported yet..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.EmptyCollection">
+            <summary>
+              Looks up a localized string similar to There is no item in the collection..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.ErrorWhileExecutingTheQuery">
+            <summary>
+              Looks up a localized string similar to An error occured while executing the query. Please check the stack trace for more detail..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.MultipleElementInColleciton">
+            <summary>
+              Looks up a localized string similar to There are multiple elements in the collection, use First instead..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.MustbeOneUniqueField">
+            <summary>
+              Looks up a localized string similar to There can only be one unique property under {0}..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.MustContainValidSettingsXml">
+            <summary>
+              Looks up a localized string similar to Must contains valid settings information to process..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.MustDefineAContainer">
+            <summary>
+              Looks up a localized string similar to Must define a container and behavior of each node..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.MustHaveADefaultConstructor">
+            <summary>
+              Looks up a localized string similar to Entity class must have a default constructor..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.MustProvideACallback">
+            <summary>
+              Looks up a localized string similar to Must provide a valid callback method..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.NotImplemetedExpressionWithMultipleArguments">
+            <summary>
+              Looks up a localized string similar to Expression with multiple argumetns is not implemented. Ex. Join..
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Messages.UnknowNodeType">
+            <summary>
+              Looks up a localized string similar to Unknown expression node type.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.ProviderException">
+            <summary>
+            Custom extender expection class.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ProviderException.#ctor(System.String,System.Exception)">
+            <summary>
+            Parametrized constructor for the expection.
+            </summary>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ProviderException.#ctor(System.String)">
+            <summary>
+            Defautl constructor for the expection.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Queryable">
+            <summary>
+            Defines various operations that extend the LINQ query.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.Where``1(Intuit.Ipp.LinqExtender.IQueryContext{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Where clause for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.OrderBy``2(Intuit.Ipp.LinqExtender.IQueryContext{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            OrderBy clause for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.OrderByDescending``2(Intuit.Ipp.LinqExtender.IQueryContext{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            OrderByDescending clause for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.Join``4(Intuit.Ipp.LinqExtender.IQueryContext{``0},Intuit.Ipp.LinqExtender.IQueryContext{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,``1,``3}})">
+            <summary>
+            Join for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.CreateQuery``3(Intuit.Ipp.LinqExtender.IQueryContext{``0},System.Reflection.MethodInfo,System.Linq.Expressions.Expression{``2},System.Type[])">
+            <summary>
+            CreateQuery for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.Select``2(Intuit.Ipp.LinqExtender.IQueryContext{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Select for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.Count``1(Intuit.Ipp.LinqExtender.IQueryContext{``0})">
+            <summary>
+            Count for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.ToIdsQuery``1(Intuit.Ipp.LinqExtender.IQueryContext{``0})">
+            <summary>
+            ToIdsQuery for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.ToIdsQuery``1(System.Linq.IQueryable{``0})">
+            <summary>
+            ToIdsQuery for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.ToIdsQuery">
+            <summary>
+            ToIdsQuery for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.Skip``1(Intuit.Ipp.LinqExtender.IQueryContext{``0},System.Int32)">
+            <summary>
+            Skip for IQueryable
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Queryable.Take``1(Intuit.Ipp.LinqExtender.IQueryContext{``0},System.Int32)">
+            <summary>
+            Take for IQueryable
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.BinaryOperator">
+            <summary>
+            Represents the relational query operator equavalent.
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.BinaryOperator.Equal">
+            <summary>
+            Eqavalent of "=="
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.BinaryOperator.GreaterThan">
+            <summary>
+            Eqavalent of ">"
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.BinaryOperator.LessThan">
+            <summary>
+            Eqavalent of <![CDATA[ < ]]>
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.BinaryOperator.GreaterThanEqual">
+            <summary>
+            Eqavalent of ">="
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.BinaryOperator.LessThanEqual">
+            <summary>
+            Eqavalent of <![CDATA[<=]]>
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.BinaryOperator.NotEqual">
+            <summary>
+            Eqavalent of "!="
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.BinaryOperator.Contains">
+            <summary>
+            Defines the Contains operation in expression.
+            </summary>
+        </member>
+        <member name="F:Intuit.Ipp.LinqExtender.BinaryOperator.NotApplicable">
+            <summary>
+            Default value for first where clause item
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.TreeNode">
+            <summary>
+            Represents the query conditions in a tree logical tree form.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.TreeNode.Node">
+            <summary>
+            Defines a tree node.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.TreeNode.Node.Value">
+            <summary>
+            Gets a value for the tree node.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.TreeNode.Id">
+            <summary>
+            Id of the current node.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.TreeNode.ParentId">
+            <summary>
+            parent Id of the current node.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.TreeNode.Nodes">
+            <summary>
+            list of nodes under each expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.TreeNode.Left">
+            <summary>
+            left leaf of the current root, can contain bucketItem or a CurrentNode
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.TreeNode.Right">
+            <summary>
+            right leaf of the current root, can contain bucketItem or a CurrentNode
+            </summary>
+            
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.TreeNode.Root">
+            <summary>
+             Root which the left and right item follows.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.TreeNode.Clone">
+            <summary>
+            Clones the tree node.
+            </summary>
+            <returns>clonned <see cref="T:Intuit.Ipp.LinqExtender.TreeNode"/></returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.QueryItemComparer`1">
+            <summary>
+            Compares two query object
+            </summary>
+            <typeparam name="T">QueryObject</typeparam>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.QueryItemComparer`1.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.QueryItemComparer`1"/> with specific order by field name and soring.
+            </summary>
+            <param name="orderByField"></param>
+            <param name="asc"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ProjectedQuery`2.#ctor(System.Linq.Expressions.Expression,Intuit.Ipp.LinqExtender.Query{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.ProjectedQuery`2"/> class.
+            </summary>
+            <param name="expression">The expression.</param>
+            <param name="parent">The query.</param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.ProjectedQuery`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.ProjectedQuery`2.ElementType">
+            <summary>
+            Gets the type of the element(s) that are returned when the expression tree associated with this instance of <see cref="T:System.Linq.IQueryable"/> is executed.
+            </summary>
+            <value></value>
+            <returns>A <see cref="T:System.Type"/> that represents the type of the element(s) that are returned when the expression tree associated with this object is executed.</returns>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.ProjectedQuery`2.Expression">
+            <summary>
+            Gets the expression tree that is associated with the instance of <see cref="T:System.Linq.IQueryable"/>.
+            </summary>
+            <value></value>
+            <returns>The <see cref="T:System.Linq.Expressions.Expression"/> that is associated with this instance of <see cref="T:System.Linq.IQueryable"/>.</returns>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.ProjectedQuery`2.Provider">
+            <summary>
+            Gets the query provider that is associated with this data source.
+            </summary>
+            <value></value>
+            <returns>The <see cref="T:System.Linq.IQueryProvider"/> that is associated with this data source.</returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.QueryObject">
+            <summary>
+            Defines a query object.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.QueryObject.ReferringObject">
+            <summary>
+            Contains the reference to the current query object.
+            </summary>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.QueryObject`1">
+            <summary>
+            Query object implemenatation.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.QueryObject`1.#ctor(`0)">
+            <summary>
+            Creates a new instance of the <see cref="T:Intuit.Ipp.LinqExtender.QueryObject`1"/> for its underlying object.
+            </summary>
+            <param name="baseObject"></param>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.QueryObject`1.IsDeleted">
+            <summary>
+            determines if an item is removed from collection.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.QueryObject`1.IsAltered">
+            <summary>
+            deternmines if the object is altered , thus call UpdateItemFormat.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.QueryObject`1.IsNewlyAdded">
+            <summary>
+            determines if an item is newly added in the collection.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.QueryObject`1.ReferringObject">
+            <summary>
+            Gets/Sets the underlying ref object for the query object implementation.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.QueryObject`1.Dispose">
+            <summary>
+            Disposes the query object.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.QueryObject`1.Intuit#Ipp#LinqExtender#Abstraction#IVersionItem#Commit">
+            <summary>
+            updates the cached object with update object
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.QueryObject`1.Intuit#Ipp#LinqExtender#Abstraction#IVersionItem#Revert">
+            <summary>
+            converts the current object to cachedObject.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.QueryObject`1.CopyObjectTo(System.Object,System.Object[])">
+            <summary>
+            Copies the source object to one or more destinaton object.
+            </summary>
+            <param name="sourceObject">single object to be copied.</param>
+            <param name="targets">array of objects</param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.QueryObject`1.FillBucket(Intuit.Ipp.LinqExtender.Bucket)">
+            <summary>
+            Takes bucket reference and fills it up with new values.
+            </summary>
+            <param name="bucket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.QueryObject`1.FillProperty(System.String,System.Object,System.Type)">
+            <summary>
+            Fill value for a property name.
+            </summary>
+            <param name="name">Name of the property, accepts original property or Modified by OriginalFieldNameAttribute</param>
+            <param name="value">the value of the property , retrived from property get accessor.</param>
+            <param name="returnType">Return type of the underlying property.</param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.QueryObject`1.FillObject(Intuit.Ipp.LinqExtender.Bucket)">
+            <summary>
+            Fills object from its underlying bucket.
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Query`1">
+            <summary>
+             Entry class for LINQ provider. Containter of the virtual methods that will be invoked on select, intsert, update, remove or get calls.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.#ctor(Intuit.Ipp.LinqExtender.IQueryContext{`0})">
+            <summary>
+            Creates a new instance of <see cref="T:Intuit.Ipp.LinqExtender.Query`1"/> class.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Query`1.Context">
+            <summary>
+            Gets the current context associated with the provider.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Query`1.Item(System.Int32)">
+            <summary>
+            Gets the collection item for an index
+            </summary>
+            <param name="index">index</param>
+            <returns><typeparamref name="T"/></returns>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Query`1.ElementType">
+            <summary>
+            Gets element type for the expression.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Query`1.Expression">
+            <summary>
+            Gets the expression tree.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.Query`1.Provider">
+            <summary>
+            Gets a query provider the LINQ query.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.GetEnumerator">
+            <summary>
+            Executes the query and gets a iterator for it.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.CreateQuery``1(System.Linq.Expressions.Expression)">
+            <summary>
+            Creates the query for type and current expression.
+            </summary>
+            <typeparam name="TS">currenty type passed by frameowrk</typeparam>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.CreateQuery(System.Linq.Expressions.Expression)">
+            <summary>
+            Creates the query for current expression.
+            </summary>
+            <param name="expression"></param>
+            <returns>ref to IQueryable instance</returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Execute``1(System.Linq.Expressions.Expression)">
+            <summary>
+            Executes the query for current type and expression
+            </summary>
+            <typeparam name="TResult">Current type</typeparam>
+            <param name="expression"></param>
+            <returns>typed result</returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Execute(System.Linq.Expressions.Expression)">
+            <summary>
+            Executes the query for current expression.
+            </summary>
+            <param name="expression"></param>
+            <returns>object/collection</returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Single">
+            <summary>
+            Returns a single item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.SingleOrDefault">
+            <summary>
+            Returns a single item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.First">
+            <summary>
+            Returns the first item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.FirstOrDefault">
+            <summary>
+            Returns first item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Last">
+            <summary>
+            Returns the last item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.LastOrDefault">
+            <summary>
+            Returns last item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Any">
+            <summary>
+            Return true if there is any item in collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Count">
+            <summary>
+            Returns the count of items in the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Clear">
+            <summary>
+            Clears out items from collection.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Sort">
+            <summary>
+            internally tries to sort , if the query contains orderby statement.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Remove(`0)">
+            <summary>
+            Marks an item to be removed.
+            </summary>
+            <param name="value">query object.</param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Addes a range of items to the collection.
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.AddRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Adds list of items to the collection , optionally calls in memory sort. Used in Query<typeparamref name="T"/>.SelectItem
+            </summary>
+            <param name="items">collection</param>
+            <param name="inMemorySort">true/false</param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.Add(`0)">
+            <summary>
+            Adds a new item to the collection
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.AddItem(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Invoked after SubmitChanges(), if there is new item in the colleciton.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.RemoveItem(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Invoked after SubmitChanges(), if there are delted items in the collection.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.UpdateItem(Intuit.Ipp.LinqExtender.Abstraction.IBucket)">
+            <summary>
+            Invoked after SubmitChanges(), if any of the object value is altered.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.ExecuteQuery(Intuit.Ipp.LinqExtender.Abstraction.IBucket,Intuit.Ipp.LinqExtender.Abstraction.IModifiableCollection{`0},System.Boolean,System.String@)">
+            <summary>
+            Called by the extender for select queries.
+            </summary>
+            <param name="bucket">bucekt interface.</param>
+            <param name="items"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.SubmitChanges">
+            <summary>
+             When called, it invokes the appropiate Query<typeparamref name="T"/> method to finalize the collection changes.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.VisitBinary(System.Linq.Expressions.BinaryExpression)">
+            <summary>
+            Visits the binary expression.
+            </summary>
+            <param name="expression">Target expression</param>
+            <returns>Result expression</returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Query`1.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            Visits the method call expression
+            </summary>
+            <param name="expression">Target expression</param>
+            <returns>Result expression</returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.TypeReference">
+            <summary>
+            Wrapper over a system type.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.TypeReference.Name">
+            <summary>
+            Gets the name of the type, applies <see cref="T:Intuit.Ipp.LinqExtender.Attributes.NameAttribute"/> first.
+            </summary>
+        </member>
+        <member name="P:Intuit.Ipp.LinqExtender.TypeReference.UnderlyingType">
+            <summary>
+            Gets the underlying type
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.TypeReference.FindAttribute``1">
+            <summary>
+            Finds the specific attribute from the type.
+            </summary>
+            <typeparam name="T">Attribute to find</typeparam>
+            <returns>Target attribute reference</returns>
+        </member>
+        <member name="T:Intuit.Ipp.LinqExtender.Utility">
+            <summary>
+            Defines various helper method used throughout the project.
+            </summary>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Utility.Combine(System.Collections.Generic.IList{Intuit.Ipp.LinqExtender.BucketItem.QueryCondition},System.Type)">
+            <summary>
+            tries to combine the values for a give a type . Ex User defined clasee
+            and its properties.
+            </summary>
+            <param name="list"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Utility.CopyRecursive(System.Object,System.Object)">
+            <summary>
+            recursively copies object properties to destination.
+            </summary>
+            <param name="source"></param>
+            <param name="destination"></param>
+        </member>
+        <member name="M:Intuit.Ipp.LinqExtender.Utility.InvokeMethod(System.String,System.Type,System.Object)">
+            <summary>
+            Invokes the specific method on the target
+            </summary>
+            <param name="methodName">Name of the method to invoke.</param>
+            <param name="targetType">Type of the target</param>
+            <param name="obj">Target object</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
