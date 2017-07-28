@@ -1,7 +1,7 @@
 ﻿
 
 /******************************************************
- * Intuit sample app for Oauth2 without Intuit .Net SDK
+ * Intuit sample app for Oauth2 using Intuit .Net SDK
  * RFC docs- https://tools.ietf.org/html/rfc6749
  * ****************************************************/
 
