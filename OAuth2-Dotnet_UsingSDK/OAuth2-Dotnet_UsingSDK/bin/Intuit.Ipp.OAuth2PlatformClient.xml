@@ -230,62 +230,6 @@
             <returns>bool</returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:Intuit.Ipp.OAuth2PlatformClient.JObjectExtensions.TryGetStringArray(Newtonsoft.Json.Linq.JObject,System.String)" -->
-        <member name="T:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler">
-            <summary>
-            RefreshTokenHandler Class
-            </summary>
-        </member>
-        <member name="P:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler.AccessToken">
-            <summary>
-            Gets the current access token
-            </summary>
-        </member>
-        <member name="P:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler.RefreshToken">
-            <summary>
-            Gets the current refresh token
-            </summary>
-        </member>
-        <member name="M:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler.#ctor(System.String,System.String,System.String,System.String,System.String,System.Net.Http.HttpMessageHandler)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="tokenEndpoint"></param>
-            <param name="clientId"></param>
-            <param name="clientSecret"></param>
-            <param name="refreshToken"></param>
-            <param name="accessToken"></param>
-            <param name="innerHandler"></param>
-        </member>
-        <member name="M:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler.#ctor(Intuit.Ipp.OAuth2PlatformClient.TokenClient,System.String,System.String,System.Net.Http.HttpMessageHandler)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="client"></param>
-            <param name="refreshToken"></param>
-            <param name="accessToken"></param>
-            <param name="innerHandler"></param>
-        </member>
-        <member name="P:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler.ClientId">
-            <summary>
-            ClientId
-            </summary>
-        </member>
-        <member name="P:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler.ClientSecret">
-            <summary>
-            ClientSecret
-            </summary>
-        </member>
-        <member name="P:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler.Address">
-            <summary>
-            Address
-            </summary>
-        </member>
-        <member name="P:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler.AuthenticationStyle">
-            <summary>
-            AuthenticationStyle
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Intuit.Ipp.OAuth2PlatformClient.RefreshTokenHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)" -->
         <member name="T:Intuit.Ipp.OAuth2PlatformClient.ResponseErrorType">
             <summary>
             Enum for Response Error

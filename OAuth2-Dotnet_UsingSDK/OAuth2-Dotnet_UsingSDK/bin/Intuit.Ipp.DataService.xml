@@ -1161,11 +1161,6 @@
               Looks up a localized string similar to There was an error while communicating with the Ids Server..
             </summary>
         </member>
-        <member name="P:Intuit.Ipp.DataService.Properties.Resources.ThrottlingErroMessage">
-            <summary>
-              Looks up a localized string similar to There was an error due to throlling excceded
-            </summary>
-        </member>
         <member name="P:Intuit.Ipp.DataService.Properties.Resources.EmailAddressNotValid">
             <summary>
               Looks up a localized string similar to Email address is either not in valid format or is not provided.
