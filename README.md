@@ -41,7 +41,7 @@ You'll have to set a Redirect URI in both 'web.config' and the Developer Portal 
 
 Use the scopes as shown in the sample app or docs for different flows.
 
-It is important to ensure that the scopes your are requesting match the scopes allowed on the Developer Portal. For this sample app to work by default, your app on Developer Portal must support both Accounting and Payment scopes. If you'd like to support Accounting only, simply remove thecom.intuit.quickbooks.payment scope from web.config.
+It is important to ensure that the scopes your are requesting match the scopes allowed on the Developer Portal. For this sample app to work by default, your app on Developer Portal must support both Accounting and Payment scopes.  If you'd like to support Accounting only, simply remove the OidcScopes.Payment.GetStringValue() scope from Default.aspx.cs.If you would like to support Payments only then simply remove the OidcScopes.Accounting.GetStringValue() scope from Default.aspx.cs. You can keep boht if you want to make calls to both api. 
 
 **Run your app!**
 
