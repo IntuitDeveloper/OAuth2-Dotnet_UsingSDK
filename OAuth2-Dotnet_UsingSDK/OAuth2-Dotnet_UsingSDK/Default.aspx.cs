@@ -697,6 +697,11 @@ namespace OAuth2_Dotnet_UsingSDK
             // Call RefreshToken endpoint to get new access token when you recieve a 401 Status code
             TokenResponse refereshtokenCallResponse = await tokenClient.RequestRefreshTokenAsync(refresh_token);
             output("Access token refreshed.");
+
+            dictionary["accessToken"] = refereshtokenCallResponse.AccessToken;
+            dictionary["refreshToken"] = refereshtokenCallResponse.RefreshToken;
+
+            output("Dictionary keys updated.");
             return refereshtokenCallResponse;
 
 
@@ -981,6 +986,8 @@ namespace OAuth2_Dotnet_UsingSDK
                     //serviceContext.RequestId = "897kjhjjhkh9";
 
                     DataService commonServiceQBO = new DataService(serviceContext);
+                    Intuit.Ipp.Data.Item item = new Intuit.Ipp.Data.Item();
+                    List<Item> results = commonServiceQBO.FindAll<Item>(item, 1, 1).ToList<Item>();
                     QueryService<Invoice> inService = new QueryService<Invoice>(serviceContext);
                     Invoice In = inService.ExecuteIdsQuery("SELECT * FROM Invoice").FirstOrDefault();
 
@@ -992,17 +999,16 @@ namespace OAuth2_Dotnet_UsingSDK
             }
             catch (IdsException ex)
             {
-                if (ex.Message == "UnAuthorized-401")
+                if (ex.Message == "UnAuthorized-401" || ex.Message == "The remote server returned an error: (401) Unauthorized.")               
                 {
 
                     output("Invalid/Expired Access Token.");
                     //if you get a 401 token expiry then perform token refresh
                     await performRefreshToken(refresh_token);
-                    //if (Session["accessToken"] != null && Session["refreshToken"] != null && Session["relamId"] != null)
-                    //{
+                 
                     if ((dictionary.ContainsKey("accessToken")) && (dictionary.ContainsKey("accessToken")) && (dictionary.ContainsKey("realmId")))
                     {
-                        //await qboApiCall(Session["accessToken"].ToString(), Session["refreshToken"].ToString(), Session["realmId"].ToString() );
+                        
                         await qboApiCall(dictionary["accessToken"], dictionary["refreshToken"], dictionary["realmId"]);
 
                     }

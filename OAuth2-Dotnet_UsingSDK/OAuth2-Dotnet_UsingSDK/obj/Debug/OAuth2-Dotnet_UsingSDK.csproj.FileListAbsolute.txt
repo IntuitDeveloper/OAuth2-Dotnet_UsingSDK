@@ -39,3 +39,4 @@ F:\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\bin\Newt
 F:\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\obj\Debug\OAuth2-Dotnet_UsingSDK.dll
 F:\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\obj\Debug\OAuth2-Dotnet_UsingSDK.pdb
 F:\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\obj\Debug\OAuth2-Dotnet_UsingSDK.csprojResolveAssemblyReference.cache
+F:\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\OAuth2-Dotnet_UsingSDK\obj\Debug\OAuth2-Dotnet_UsingSDK.csproj.CoreCompileInputs.cache
