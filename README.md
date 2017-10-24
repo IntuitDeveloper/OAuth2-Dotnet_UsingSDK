@@ -8,7 +8,7 @@ Before beginning, it may be helpful to have a basic understanding of OAuth 2.0 c
 
 **PreRequisites**
 
-Visual Studio Framework 4.6.1
+.Net Framework 4.6.1
 
 
 
