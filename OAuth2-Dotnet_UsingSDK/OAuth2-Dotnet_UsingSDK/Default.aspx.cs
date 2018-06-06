@@ -570,7 +570,7 @@ namespace OAuth2_Dotnet_UsingSDK
                 if (accesstokenCallResponse.HttpStatusCode == HttpStatusCode.OK)
                 {
                     //save the refresh token in persistent store so that it can be used to refresh short lived access tokens
-                    refresh_token = accesstokenCallResponse.RefreshToken;
+                    refresh_token = refereshtokenCallResponse.RefreshToken;
                     if (!dictionary.ContainsKey("refreshToken"))
                     {
                         dictionary.Add("refreshToken", refresh_token);
