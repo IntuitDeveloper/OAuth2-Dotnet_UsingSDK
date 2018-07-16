@@ -47,9 +47,9 @@ All flows should work, please note the scope in each of these flows. The sample 
 
 **Sign In With Intuit** - this flow requests OpenID only scopes. After authorizing (or if the account you are using has already been authorized for this app), the redirect URL will parse the JWT ID token, and make an API call to the user information endpoint.
 
-**Connect To QuickBooks** - this flow requests non-OpenID scopes. You will be able to make a QuickBooks API sample call (using the OAuth2 token) on the /connected landing page.
+**Connect To QuickBooks** - this flow requests OAuth scopes. You will be able to make a QuickBooks API sample call (using the OAuth2 token) on the /connected landing page.
 
-**Get App Now (Openid)** - this flow requests both OpenID and non-OpenID scopes. It simulates the request that would come once a user clicks "Get App Now" on the apps.com website, after you publish your app.
+**Get App Now** - this flow requests both OpenID and OAuth scopes. It simulates the request that would come once a user clicks "Get App Now" on the apps.com website, after you publish your app.
 
 ### Note: This app uses new OAuth2Client. If you want to refer the other way to use standalone OAuth2 clients, download v1.0 from Release tab
 
