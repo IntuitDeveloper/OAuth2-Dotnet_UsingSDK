@@ -21,11 +21,12 @@ Clone this repository/Download the sample app.
 
 All configuration for this app is located in web.config. Locate and open this file.
 
-We will need to update 4 items:
+We will need to update 5 items:
 
 clientId
 clientSecret
 redirectUri
+appEnvironment (sandbox/production)
 logPath
 
 First 3 values must match exactly with what is listed in your app settings on developer.intuit.com. If you haven't already created an app, you may do so there. Please read on for important notes about client credentials, scopes, and redirect urls.
@@ -39,33 +40,19 @@ Once you have created an app on Intuit's Developer Portal, you can find your cre
 **Redirect URI**
 You'll have to set a Redirect URI in both 'web.config' and the Developer Portal ("Keys" section). With this app, the typical value would be http://localhost:59785/Default.aspx, unless you host this sample app in a different way (if you were testing HTTPS, for example or changing the port).
 
-**Scopes**
-
-Use the scopes as shown in the sample app or docs for different flows.
-
-It is important to ensure that the scopes your are requesting match the scopes allowed on the Developer Portal. For this sample app to work by default, your app on Developer Portal must support both Accounting and Payment scopes.  If you'd like to support Accounting only, simply remove the OidcScopes.Payment.GetStringValue() scope from Default.aspx.cs.
-If you would like to support Payments only then simply remove the OidcScopes.Accounting.GetStringValue() scope from Default.aspx.cs. 
-So in doAuth func , line 373 the code should be
-scopeVal = OidcScopes.Accounting.GetStringValue();
- 
-Line 386 the code should be-
-scopeVal = OidcScopes.Accounting.GetStringValue()  + " " + OidcScopes.OpenId.GetStringValue() + " " + OidcScopes.Address.GetStringValue()
-          + " " + OidcScopes.Email.GetStringValue() + " " + OidcScopes.Phone.GetStringValue()
-          + " " + OidcScopes.Profile.GetStringValue();
- 
-You can keep both if you want to make calls to both api. 
 
 **Run your app!**
 
 After setting up both Developer Portal and your web.config(setup Log Path too), run the sample app. Check logs on the path you have already configured in the web.config to get details of how the flow worked.
 
+All flows should work, please note the scope in each of these flows. The sample app supports the following flows:
 
-All flows should work. The sample app supports the following flows:
-
-**Sign In With Intuit** - this flow requests OpenID only scopes. Feel free to change the scopes being requested in web.config. After authorizing (or if the account you are using has already been authorized for this app), the redirect URL will parse the JWT ID token, and make an API call to the user information endpoint.
+**Sign In With Intuit** - this flow requests OpenID only scopes. After authorizing (or if the account you are using has already been authorized for this app), the redirect URL will parse the JWT ID token, and make an API call to the user information endpoint.
 
 **Connect To QuickBooks** - this flow requests non-OpenID scopes. You will be able to make a QuickBooks API sample call (using the OAuth2 token) on the /connected landing page.
 
 **Get App Now (Openid)** - this flow requests both OpenID and non-OpenID scopes. It simulates the request that would come once a user clicks "Get App Now" on the apps.com website, after you publish your app.
+
+### Note: This app uses new OAuth2Client. If you want to refer the other way to use standalone OAuth2 clients, download v1.0 from Release tab
 
 [ss1]: https://help.developer.intuit.com/s/samplefeedback?cid=9010&repoName=OAuth2-Dotnet-UsingSDK
