@@ -28,6 +28,7 @@ using Intuit.Ipp.QueryFilter;
 using Intuit.Ipp.Security;
 using Intuit.Ipp.Exception;
 using System.Linq;
+using Intuit.Ipp.ReportService;
 
 namespace OAuth2_Dotnet_UsingSDK
 {
@@ -281,15 +282,48 @@ namespace OAuth2_Dotnet_UsingSDK
                     ServiceContext serviceContext = new ServiceContext(dictionary["realmId"], IntuitServicesType.QBO, oauthValidator);
                     serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
                     //serviceContext.IppConfiguration.BaseUrl.Qbo = "https://quickbooks.api.intuit.com/";//prod
-                    serviceContext.IppConfiguration.MinorVersion.Qbo = "23";
+                    serviceContext.IppConfiguration.MinorVersion.Qbo = "29";
+                    ReportService reportService = new ReportService(serviceContext);
+
+                    //Date should be in the format YYYY-MM-DD 
+                    //Response format hsold be JSON as that is pnly supported rigth now for reports 
+                    reportService.accounting_method = "Accrual";
+                    reportService.start_date = "2018-01-01";
+                    reportService.end_date = "2018-07-01";
+                    ////reportService.classid = "2800000000000634813"; 
+                    //reportService.date_macro = "Last Month"; 
+                    reportService.summarize_column_by = "Month";
+
+
+                    //List<String> columndata = new List<String>();
+                    //columndata.Add("tx_date");
+                    //columndata.Add("dept_name");
+                    //string coldata = String.Join(",", columndata);
+                    //reportService.columns = coldata;
+
+                    var report1 = reportService.ExecuteReport("TrialBalance");
+
 
                     DataService commonServiceQBO = new DataService(serviceContext);
-                    Item item = new Item();
-                    List<Item> results = commonServiceQBO.FindAll<Item>(item, 1, 1).ToList<Item>();
+                    //Item item = new Item();
+                    //List<Item> results = commonServiceQBO.FindAll<Item>(item, 1, 1).ToList<Item>();
                     QueryService<Invoice> inService = new QueryService<Invoice>(serviceContext);
-                    Invoice In = inService.ExecuteIdsQuery("SELECT * FROM Invoice").FirstOrDefault();
+                    var In = inService.ExecuteIdsQuery("SELECT count(*) FROM Invoice").Count();
 
-                    output("QBO call successful.");
+
+
+                    Batch batch = commonServiceQBO.CreateNewBatch();
+                   
+
+                    batch.Add("select count(*) from Account", "queryAccount");
+                    batch.Execute();
+
+                    if (batch.IntuitBatchItemResponses != null && batch.IntuitBatchItemResponses.Count() > 0)
+                    {
+                        IntuitBatchResponse res = batch.IntuitBatchItemResponses.FirstOrDefault();
+                        List<Account> acc = res.Entities.ToList().ConvertAll(item => item as Account);
+                    };
+                        output("QBO call successful.");
                     lblQBOCall.Visible = true;
                     lblQBOCall.Text = "QBO Call successful";
                 }
