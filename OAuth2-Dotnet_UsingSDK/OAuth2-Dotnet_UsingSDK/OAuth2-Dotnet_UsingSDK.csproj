@@ -126,7 +126,9 @@
     <Content Include="Images\C2QB_white_btn_lg_hover.png" />
     <Content Include="Images\Get_App.png" />
     <Content Include="Images\IntuitSignIn-lg-white%402x.jpg" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
