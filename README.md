@@ -11,6 +11,7 @@ Before beginning, it may be helpful to have a basic understanding of OAuth 2.0 c
 ### PreRequisites
 
 .Net Framework 4.6.1
+
 Microsoft.Net.Compilers 2.10.0
 
 ## Setup
