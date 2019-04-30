@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 using Intuit.Ipp.Core;
 using Intuit.Ipp.Data;
 using Intuit.Ipp.DataService;
-using Intuit.Ipp.LinqExtender;
 using Intuit.Ipp.QueryFilter;
 using Intuit.Ipp.Security;
 using Intuit.Ipp.Exception;
