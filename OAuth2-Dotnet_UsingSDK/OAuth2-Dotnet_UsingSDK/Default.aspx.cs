@@ -82,15 +82,15 @@ namespace OAuth2_Dotnet_UsingSDK
                             if (response.Code != null)
                             {
                                 authCode = response.Code;
-                                output("Authorization code obtained.");
-                                PageAsyncTask t = new PageAsyncTask(performCodeExchange);
+                                Output("Authorization code obtained.");
+                                PageAsyncTask t = new PageAsyncTask(PerformCodeExchange);
                                 Page.RegisterAsyncTask(t);
                                 Page.ExecuteRegisteredAsyncTasks();
                             }
                         }
                         else
                         {
-                            output("Invalid State");
+                            Output("Invalid State");
                             dictionary.Clear();
                         }
                     }
@@ -107,7 +107,7 @@ namespace OAuth2_Dotnet_UsingSDK
 
         protected void ImgOpenId_Click(object sender, ImageClickEventArgs e)
         {
-            output("Intiating OpenId call.");
+            Output("Intiating OpenId call.");
             try
             {
                 if (!dictionary.ContainsKey("accessToken"))
@@ -125,13 +125,13 @@ namespace OAuth2_Dotnet_UsingSDK
             }
             catch (Exception ex)
             {
-                output(ex.Message);
+                Output(ex.Message);
             }
         }
 
         protected void ImgC2QB_Click(object sender, ImageClickEventArgs e)
         {
-            output("Intiating OAuth2 call.");
+            Output("Intiating OAuth2 call.");
             try
             {
                 if (!dictionary.ContainsKey("accessToken"))
@@ -144,13 +144,13 @@ namespace OAuth2_Dotnet_UsingSDK
             }
             catch (Exception ex)
             {
-                output(ex.Message);
+                Output(ex.Message);
             }
         }
 
         protected void ImgGetAppNow_Click(object sender, ImageClickEventArgs e)
         {
-            output("Intiating Get App Now call.");
+            Output("Intiating Get App Now call.");
             try
             {
                 if (!dictionary.ContainsKey("accessToken"))
@@ -169,7 +169,7 @@ namespace OAuth2_Dotnet_UsingSDK
             }
             catch (Exception ex)
             {
-                output(ex.Message);
+                Output(ex.Message);
             }
         }
 
@@ -181,7 +181,7 @@ namespace OAuth2_Dotnet_UsingSDK
             }
             else
             {
-                output("Access token not found.");
+                Output("Access token not found.");
                 lblQBOCall.Visible = true;
                 lblQBOCall.Text = "Access token not found.";
             }
@@ -199,7 +199,7 @@ namespace OAuth2_Dotnet_UsingSDK
             {
                 lblUserInfo.Visible = true;
                 lblUserInfo.Text = "UserInfo call is available through OpenId/GetAppNow flow first.";
-                output("Go through OpenId flow first.");
+                Output("Go through OpenId flow first.");
             }
         }
 
@@ -207,14 +207,14 @@ namespace OAuth2_Dotnet_UsingSDK
         {
             if ((dictionary.ContainsKey("accessToken")) && (dictionary.ContainsKey("refreshToken")))
             {
-                output("Exchanging refresh token for access token.");
+                Output("Exchanging refresh token for access token.");
                 var tokenResp = await oauthClient.RefreshTokenAsync(dictionary["refreshToken"]);
             }
         }
 
         protected async void btnRevoke_Click(object sender, EventArgs e)
         {
-            output("Performing Revoke tokens.");
+            Output("Performing Revoke tokens.");
             if ((dictionary.ContainsKey("accessToken")) && (dictionary.ContainsKey("refreshToken")))
             {
                 var revokeTokenResp = await oauthClient.RevokeTokenAsync(dictionary["refreshToken"]);
@@ -226,7 +226,7 @@ namespace OAuth2_Dotnet_UsingSDK
                     else
                         Response.Redirect(Request.RawUrl.Replace(Request.Url.Query, ""));
                 }
-                output("Token revoked.");
+                Output("Token revoked.");
             }
         }
         #endregion
@@ -234,9 +234,9 @@ namespace OAuth2_Dotnet_UsingSDK
         /// <summary>
         /// Start code exchange to get the Access Token and Refresh Token
         /// </summary>
-        public async System.Threading.Tasks.Task performCodeExchange()
+        public async System.Threading.Tasks.Task PerformCodeExchange()
         {
-            output("Exchanging code for tokens.");
+            Output("Exchanging code for tokens.");
             try
             {
                 var tokenResp = await oauthClient.GetBearerTokenAsync(authCode);
@@ -263,7 +263,7 @@ namespace OAuth2_Dotnet_UsingSDK
             }
             catch (Exception ex)
             {
-                output("Problem while getting bearer tokens.");
+                Output("Problem while getting bearer tokens.");
             }
         }
 
@@ -276,7 +276,7 @@ namespace OAuth2_Dotnet_UsingSDK
             {
                 if ((dictionary.ContainsKey("accessToken")) && (dictionary.ContainsKey("realmId")))
                 {
-                    output("Making QBO API Call.");
+                    Output("Making QBO API Call.");
                     OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator(dictionary["accessToken"]);
                     ServiceContext serviceContext = new ServiceContext(dictionary["realmId"], IntuitServicesType.QBO, oauthValidator);
                     serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
@@ -322,7 +322,7 @@ namespace OAuth2_Dotnet_UsingSDK
                         IntuitBatchResponse res = batch.IntuitBatchItemResponses.FirstOrDefault();
                         List<Account> acc = res.Entities.ToList().ConvertAll(item => item as Account);
                     };
-                        output("QBO call successful.");
+                        Output("QBO call successful.");
                     lblQBOCall.Visible = true;
                     lblQBOCall.Text = "QBO Call successful";
                 }
@@ -331,7 +331,7 @@ namespace OAuth2_Dotnet_UsingSDK
             {
                 if (ex.Message == "Unauthorized-401")
                 {
-                    output("Invalid/Expired Access Token.");
+                    Output("Invalid/Expired Access Token.");
 
                     var tokenResp = await oauthClient.RefreshTokenAsync(dictionary["refreshToken"]);
                     if (tokenResp.AccessToken != null && tokenResp.RefreshToken != null)
@@ -342,17 +342,17 @@ namespace OAuth2_Dotnet_UsingSDK
                     }
                     else
                     {
-                        output("Error while refreshing tokens: " + tokenResp.Raw);
+                        Output("Error while refreshing tokens: " + tokenResp.Raw);
                     }
                 }
                 else
                 {
-                    output(ex.Message);
+                    Output(ex.Message);
                 }
             }
             catch (Exception ex)
             {
-                output("Invalid/Expired Access Token.");
+                Output("Invalid/Expired Access Token.");
             }
         }
 
@@ -372,7 +372,7 @@ namespace OAuth2_Dotnet_UsingSDK
             }
             catch
             {
-                output("Log error path not found.");
+                Output("Log error path not found.");
             }
             return logPath;
         }
@@ -381,7 +381,7 @@ namespace OAuth2_Dotnet_UsingSDK
         /// Appends the given string to the on-screen log, and the debug console.
         /// </summary>
         /// <param name="logMsg">string to be appended</param>
-        public void output(string logMsg)
+        public void Output(string logMsg)
         {
             StreamWriter sw = File.AppendText(GetLogPath() + "OAuth2SampleAppLogs.txt");
             try

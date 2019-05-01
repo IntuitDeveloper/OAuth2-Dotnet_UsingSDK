@@ -19,7 +19,7 @@
                     <li>Update your Client ID, Client Secret, Redirect Url (found on <a href="https://developer.intuit.com">developer.intuit.com</a>) and app environment in web.config</li>
                     <li>Also Update your Log file Path in web.config</li>
                     <li>Each button click flow should be tested by stopping the application and running it again.</li>
-                    <li>QBO API call can be made for only for C2QB or Get App Now flows. You will not see any output for QBO call on the screen.You need to debug the call.</li>
+                    <li>QBO API call can be made for only for C2QB or Get App Now flows. You will not see any Output for QBO call on the screen.You need to debug the call.</li>
                     <li>In actual app you will have only one of these button click implementations. Testing them all at once will result in exceptions.</li>
                 </ul>
                 <p>&nbsp;</p>
