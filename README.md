@@ -1,4 +1,4 @@
-[![Sample Banner](views/Sample.png)][ss1]
+[![Rate your Sample](views/Ratesample.png)][ss1][![Yes](views/Thumbup.png)][ss2][![No](views/Thumbdown.png)][ss3] 
 
 # OAuth2-Dotnet-UsingSDK
 OAuth2 Web Forms Sample app for Dotnet
@@ -58,4 +58,6 @@ This flow requests both OpenID and OAuth scopes. It simulates the request that w
 
 #### Note: This app uses new OAuth2Client. If you want to refer the other way to use standalone OAuth2 clients, download v1.0 from Release tab
 
-[ss1]: https://help.developer.intuit.com/s/samplefeedback?cid=9010&repoName=OAuth2-Dotnet-UsingSDK
+[ss1]: #
+[ss2]: https://customersurveys.intuit.com/jfe/form/SV_9LWgJBcyy3NAwHc?check=Yes&checkpoint=OAuth2-Dotnet_UsingSDK&pageUrl=github
+[ss3]: https://customersurveys.intuit.com/jfe/form/SV_9LWgJBcyy3NAwHc?check=No&checkpoint=OAuth2-Dotnet_UsingSDK&pageUrl=github
