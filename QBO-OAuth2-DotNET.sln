@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QBO.WinForms", "WinForms\QBO.WinForms.csproj", "{9F45C804-1BCA-45E4-8DD7-ED791DF535B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QBO.Shared", "QBO.Shared\QBO.Shared.csproj", "{0F7C8F54-E840-45E5-9E3E-A6496DA039AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F45C804-1BCA-45E4-8DD7-ED791DF535B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F45C804-1BCA-45E4-8DD7-ED791DF535B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F45C804-1BCA-45E4-8DD7-ED791DF535B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F45C804-1BCA-45E4-8DD7-ED791DF535B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F7C8F54-E840-45E5-9E3E-A6496DA039AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F7C8F54-E840-45E5-9E3E-A6496DA039AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F7C8F54-E840-45E5-9E3E-A6496DA039AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F7C8F54-E840-45E5-9E3E-A6496DA039AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17DDE85E-9CD7-4071-851E-5B2E308663FC}
+	EndGlobalSection
+EndGlobal
