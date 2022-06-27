@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IppDotNetSdkForQuickBooksApiV3" Version="14.6.3.2" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1245.22" />
+  </ItemGroup>
+
+</Project>
