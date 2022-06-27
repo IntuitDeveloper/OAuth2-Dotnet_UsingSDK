@@ -1,6 +1,6 @@
 ﻿namespace QBO.Shared
 {
-    internal class AuthTokens
+    public class QboAuthTokens
     {
         public string? AccessToken { get; set; }
         public string? RefreshToken { get; set; }
