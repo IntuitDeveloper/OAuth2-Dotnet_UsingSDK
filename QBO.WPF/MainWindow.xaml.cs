@@ -46,7 +46,7 @@ namespace QBO.WPF
             // Initialize the WebView2 control.
             await WebView.EnsureCoreWebView2Async(null);
 
-            // Navigate the WebView2 control
+            // Navigate the WebView2 control to
             // a generated authorization URL.
             WebView.CoreWebView2.Navigate(QboHelper.GetAuthorizationURL(OidcScopes.Accounting));
         }

@@ -29,7 +29,7 @@ namespace QBO.WinForms
             // Initialize the WebView2 control.
             await WebView.EnsureCoreWebView2Async(null);
 
-            // Navigate the WebView2 control
+            // Navigate the WebView2 control to
             // a generated authorization URL.
             WebView.CoreWebView2.Navigate(QboHelper.GetAuthorizationURL(OidcScopes.Accounting));
         }
@@ -41,7 +41,7 @@ namespace QBO.WinForms
             // completed with success or failure.
 
             // Get the current query parameters
-            // from the current WebView source (page)
+            // from the current WebView source (page).
             string query = WebView.Source.Query;
 
             // Use the the shared helper library
