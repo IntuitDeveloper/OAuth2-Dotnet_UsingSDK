@@ -8,12 +8,12 @@ namespace QBO.Shared
         public static QboAuthTokens? Tokens { get; set; } = null;
         public static OAuth2Client? Client { get; set; } = null;
 
-        public static void Initialize()
+        public static void Initialize(string path = ".\\Tokens.json")
         {
             // Loading the tokens and client once (on sign-in/start up)
             // and saving them in static properties saves us from
             // deserializing again when we want to read or write the data.
-            Tokens = JsonSerializer.Deserialize<QboAuthTokens>(File.ReadAllText(".\\Tokens.json"), new JsonSerializerOptions() {
+            Tokens = JsonSerializer.Deserialize<QboAuthTokens>(File.ReadAllText(path), new JsonSerializerOptions() {
                 ReadCommentHandling = JsonCommentHandling.Skip
             }) ?? new();
 

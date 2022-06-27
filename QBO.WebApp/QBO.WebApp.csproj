@@ -7,16 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Tokens.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Tokens.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\QBO.Shared\QBO.Shared.csproj" />
   </ItemGroup>
 
