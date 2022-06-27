@@ -1,4 +1,4 @@
-[![Rate your Sample](views/Ratesample.png)][ss1][![Yes](views/Thumbup.png)][ss2][![No](views/Thumbdown.png)][ss3] 
+[![Rate your Sample](./docs/res/Ratesample.png)][ss1][![Yes](./docs/res/Thumbup.png)][ss2][![No](./docs/res/Thumbdown.png)][ss3] 
 
 # OAuth2-Dotnet-UsingSDK
 OAuth2 Web Forms Sample app for Dotnet
