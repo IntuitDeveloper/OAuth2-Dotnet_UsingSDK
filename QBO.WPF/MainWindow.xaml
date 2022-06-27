@@ -1,0 +1,17 @@
+﻿<Window x:Class="QBO.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:QBO.WPF"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ms="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        Title="MainWindow"
+        Width="800"
+        Height="450"
+        Closing="Window_Closing"
+        Loaded="Window_Loaded"
+        mc:Ignorable="d">
+    <Grid>
+        <ms:WebView2 x:Name="WebView" />
+    </Grid>
+</Window>
