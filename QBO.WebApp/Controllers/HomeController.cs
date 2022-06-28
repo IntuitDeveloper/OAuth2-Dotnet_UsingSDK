@@ -14,7 +14,7 @@ namespace QBO.WebApp.Controllers
             // to load the token json data (Local.Tokens)
             // and initialize the OAuth2
             // client (Local.Client).
-            QboLocal.Initialize("..\\QBO.Shared\\Tokens.json");
+            QboLocal.Initialize("..\\QBO.Shared\\Tokens.jsonc");
 
             // redirect the local host to
             // a generated authorization URL.

@@ -8,10 +8,11 @@
 
   <ItemGroup>
     <None Remove="Tokens.json" />
+    <None Remove="Tokens.jsonc" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Tokens.json">
+    <Content Include="Tokens.jsonc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

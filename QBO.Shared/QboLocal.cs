@@ -8,7 +8,7 @@ namespace QBO.Shared
         public static QboAuthTokens? Tokens { get; set; } = null;
         public static OAuth2Client? Client { get; set; } = null;
 
-        public static void Initialize(string path = ".\\Tokens.json")
+        public static void Initialize(string path = ".\\Tokens.jsonc")
         {
             // Loading the tokens and client once (on sign-in/start up)
             // and saving them in static properties saves us from
@@ -26,7 +26,7 @@ namespace QBO.Shared
             else {
                 throw new InvalidDataException(
                     "The ClientId or ClientSecret was null or empty.\n" +
-                    "Make sure that 'Tokens.json' is setup with your credentials."
+                    "Make sure that 'Tokens.jsonc' is setup with your credentials."
                 );
             }
         }
