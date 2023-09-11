@@ -6,7 +6,7 @@ The Intuit Developer team has written these OAuth 2.0 sample applications using 
 
 ## Getting Started
 
-Before proceeding, it may be helpful to understand how OAuth 2.0 works in Quickbooks Online. Check out the [Authorization FAQ](https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/faq) and the [Authorization and authentication page](https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization) found in the official [Intuit documenation](https://developer.intuit.com/) for more information on OAuth 2.0.
+Before proceeding, it may be helpful to understand how OAuth 2.0 works in Quickbooks Online. Check out the [Authorization FAQ](https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/faq) and the [Authorization and authentication page](https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization) found in the official [Intuit documentation](https://developer.intuit.com/) for more information on OAuth 2.0.
 
 ### Pre-Requisites
 
@@ -64,16 +64,16 @@ This section covers how each sample project handles OAuth2 authentication with t
 
 The Desktop sample implements a [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2) control from the [WebView2 library](https://www.nuget.org/packages/Microsoft.Web.WebView2) to display the Intuit sign-on page to the user while still keeping it contained within the application.
 
-_<ins>Note</ins> — All users must have the [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section) runtime installed on there machine._
+_<ins>Note</ins> — All users must have the [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section) runtime installed on their machine._
 
 #### Authentication Flow
 
-In the desktop sample applications, the authentication code is triggered and ended by two events. These two events can be anything, as long as the user runs the second event; this is clarifieed further by looking at how the authentication flow works.
+In the desktop sample applications, the authentication code is triggered and ended by two events. These two events can be anything, if the user runs the second event; this is clarified further by examining the authentication flow.
 
-- **First Event** ([`Form.Load`](./QBO.WinForms/MainForm.cs#L13) in the sample applications)
+- **First Event** ([`Form.Load`](./QBO.WinForms/MainForm.cs#L13) in the sample application)
   - The `ClientID` and `ClientSecret` are used to get an authorization URL from QBO. [<sup>Shared</sup>](./QBO.Shared/QboHelper.cs#L16-L30)
   - That URL is sent to the `WebView2` control to be rendered. [<sup>WinForms</sup>](./QBO.WinForms/MainForm.cs#L13-L35)
-  - The user is then prompted to sign in to there QBO account on the rendered page.
+  - The user is then prompted to sign in to their QBO account on the rendered page.
   - After signing in, the `WebView2` control is redirected to the `RedirectUrl` with a `code` and `realmId` in the query parameters.
 
 _At this point, your application has no idea that the authentication completed. We need a message from the user (or the redirected site) to say: "Yes, I have signed in and have been redirected." That message in this example is the `Form.Closing` event._
